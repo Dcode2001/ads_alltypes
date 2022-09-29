@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select Ads"),
+        title: Text("Select ADS"),
         centerTitle: true,
       ),
       body: SafeArea(
