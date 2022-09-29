@@ -105,11 +105,6 @@ class _inter_adState extends State<inter_ad> {
       onAdDismissedFullScreenContent: (InterstitialAd ad) {
         print('$ad onAdDismissedFullScreenContent.');
         ad.dispose();
-        _createInterstitialAd();
-      },
-      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
-        print('$ad onAdFailedToShowFullScreenContent: $error');
-        ad.dispose();
 
         if(inter==1) {
           Navigator.push(context, MaterialPageRoute(
@@ -134,7 +129,11 @@ class _inter_adState extends State<inter_ad> {
             },
           ));
         }
-
+        _createInterstitialAd();
+      },
+      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
         _createInterstitialAd();
       },
     );
@@ -155,9 +154,30 @@ class _inter_adState extends State<inter_ad> {
           children: [
             ElevatedButton(
                 onPressed: () {
+                  inter=1;
                   _showInterstitialAd();
                 },
-                child: Text("Click For InterstitialAd "))
+                child: Text("Click For Banner Ad ")),
+
+            SizedBox(height:10),
+
+            ElevatedButton(
+                onPressed: () {
+                  inter=2;
+                  _showInterstitialAd();
+                },
+                child: Text("Click For Native Ad")),
+
+            SizedBox(height:10),
+
+            ElevatedButton(
+                onPressed: () {
+                  inter=3;
+                  _showInterstitialAd();
+                },
+                child: Text("Click For Rewardad Ad ")),
+
+            SizedBox(height:10),
           ],
         ),
       ),

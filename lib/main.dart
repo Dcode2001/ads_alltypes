@@ -1,8 +1,12 @@
 import 'package:ads_alltypes/banner_ad.dart';
 import 'package:ads_alltypes/inter_ad.dart';
+import 'package:ads_alltypes/native_ad.dart';
 import 'package:ads_alltypes/rewardad_ad.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
+import 'app_open_ads_/app_lifecycle_reactor.dart';
+import 'app_open_ads_/app_open_ad_manager.dart';
 
 
 void main() {
@@ -12,6 +16,8 @@ void main() {
 }
 
 const int maxFailedLoadAttempts = 3;
+
+
 
 /*
 void main() {
@@ -29,6 +35,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  late AppLifecycleReactor _appLifecycleReactor;
+
+  @override
+  void initState() {
+    super.initState();
+    AppOpenAdManager appOpenAdManager = AppOpenAdManager()..loadAd();
+    _appLifecycleReactor =
+        AppLifecycleReactor(appOpenAdManager: appOpenAdManager);
+    _appLifecycleReactor.listenToAppStateChanges();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +87,12 @@ class _MyAppState extends State<MyApp> {
             }, child: Text("Reawardad Ad")),
 
             SizedBox(height: 10),
+            ElevatedButton(onPressed: () {
+
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
+                return native_ads();
+              },));
+            }, child: Text("Native Ad")),
 
           ],
         )),
